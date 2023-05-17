@@ -11,23 +11,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primarySwatch: Colors.deepPurple,
-        ),
-        routes: {
-          // '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
-          '/': (context) => TournamentsPage(),
-        }
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+        // primarySwatch: Colors.deepPurple,
+        primaryColor: Color.fromRGBO(101, 98, 223, 1),
+        accentColor: Color.fromRGBO(101, 98, 223, 1),
+        focusColor: Color.fromRGBO(101, 98, 223, 1),
+
+      ),
+      routes: {
+        // '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+        '/': (context) => TournamentsPage(),
+      }
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -138,31 +142,31 @@ class TournamentsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 20.0),
-            child: Text('Competitions',
-              style: TextStyle(fontSize: 30,
-                  color: Colors.deepPurple,
-                  fontFamily: 'Libre Baskerville'
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: Text('Competitions',
+                style: TextStyle(fontSize: 30,
+                        color: Colors.deepPurple,
+                        fontFamily: 'Libre Baskerville'
+                    ),
+                textAlign: TextAlign.center,
+                  ),
+                ),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
+      body: Center(
+        child: ListView(
+          children: [
+            SectionHeader(title: 'Upcoming'),
+            ...upcomingTournaments.map((t) => TournamentCard(tournament: t)),
+            SectionHeader(title: 'Previous'),
+            ...previousTournaments.map((t) => TournamentCard(tournament: t)),
+          ],
         ),
-        body: Center(
-          child: ListView(
-            children: [
-              SectionHeader(title: 'Upcoming'),
-              ...upcomingTournaments.map((t) => TournamentCard(tournament: t)),
-              SectionHeader(title: 'Previous'),
-              ...previousTournaments.map((t) => TournamentCard(tournament: t)),
-            ],
-          ),
-        )
+      )
     );
   }
 }
@@ -200,26 +204,26 @@ class TournamentCard extends StatelessWidget {
           ),
         );
       },
-      child: Card(
-        color: Color.fromRGBO(101, 98, 223, 1),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                tournament.name,
-                style: TextStyle(fontFamily: 'Libre Baskerville', fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-              Text(
-                  'Date: ${tournament.date.toIso8601String()}',
-                  style: TextStyle(color: Colors.white,)
-              ),
-              Text(
-                  'Location: ${tournament.location}',
-                  style: TextStyle(color: Colors.white,)
-              ),
-              Text(
+    child: Card(
+      color: Color.fromRGBO(101, 98, 223, 1),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              tournament.name,
+              style: TextStyle(fontFamily: 'Libre Baskerville', fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+            Text(
+              'Date: ${tournament.date.toIso8601String()}',
+              style: TextStyle(color: Colors.white,)
+            ),
+            Text(
+                'Location: ${tournament.location}',
+                style: TextStyle(color: Colors.white,)
+            ),
+            Text(
                 'Race Distance: ${tournament.raceDistance}',
                 style: TextStyle(color: Colors.white),
               ),
@@ -238,26 +242,89 @@ class TournamentDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dummyHeats = {
+      'Heat 1': [
+        {'name': 'Racer A1', 'time': '12.34s'},
+        {'name': 'Racer A2', 'time': '12.56s'},
+        // Add more racers...
+      ],
+      'Heat 2': [
+        {'name': 'Racer B1', 'time': '11.84s'},
+        {'name': 'Racer B2', 'time': '12.23s'},
+        // Add more racers...
+      ],
+      // Add more heats...
+    };
+
     return Scaffold(
         appBar: AppBar(
-          title: Text(tournament.name),
-        ),
-        body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              //how does <Widget> work, maybe an insert?
-              children: <Widget>[
-                Text(
-                  'Here are the race results for ${tournament.name}:',
+          centerTitle: true,
+          flexibleSpace: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              return Container(
+                width: constraints.maxWidth,
+                height: constraints.maxHeight,
+                child: SafeArea(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        tournament.name,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 24,
+                          fontFamily: 'Libre Baskerville',
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        'Participants',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 18,
+                          fontFamily: 'Libre Baskerville',
+                          color: Colors.white,),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+          backgroundColor: Color.fromRGBO(101, 98, 223, 1),
+          toolbarHeight: 90.0,
+      ),
+
+      body: ListView.builder(
+        itemCount: dummyHeats.length,
+        itemBuilder: (context, index) {
+          String heatName = dummyHeats.keys.elementAt(index);
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  heatName,
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-              ],
-            )
-        )
+              ),
+              ...dummyHeats[heatName]!.map((racer) {
+                return Card(
+                  child: ListTile(
+                    title: Text(racer['name']!),
+                    trailing: Text(racer['time']!),
+                  ),
+                );
+              }).toList(),
+            ],
+          );
+        },
+      ),
     );
   }
 }
+
+
 
 class Tournament {
   final String name;
@@ -268,4 +335,17 @@ class Tournament {
   Tournament(this.name, this.date, this.location, this.raceDistance);
 }
 
+// class Heat {
+//   final int number;
+//   final List<Racer> racers;
+//
+//   Heat(this.number, this.racers);
+// }
+//
+// class Racer {
+//   final String name;
+//   final String resultTime;
+//
+//   Racer(this.name, this.resultTime);
+// }
 
