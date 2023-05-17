@@ -145,7 +145,7 @@ class TournamentsPage extends StatelessWidget {
             child: Text('Competitions',
               style: TextStyle(fontSize: 30,
                   color: Colors.deepPurple,
-                  fontFamily: 'Libre'
+                  fontFamily: 'Libre Baskerville'
               ),
               textAlign: TextAlign.center,
             ),
@@ -178,7 +178,7 @@ class SectionHeader extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         title,
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(fontFamily: 'Libre Baskerville',fontSize: 24, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -201,7 +201,7 @@ class TournamentCard extends StatelessWidget {
         );
       },
       child: Card(
-        color: Colors.deepPurple,
+        color: Color.fromRGBO(101, 98, 223, 1),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
@@ -209,7 +209,7 @@ class TournamentCard extends StatelessWidget {
             children: [
               Text(
                 tournament.name,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(fontFamily: 'Libre Baskerville', fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               Text(
                   'Date: ${tournament.date.toIso8601String()}',
