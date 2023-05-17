@@ -11,20 +11,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.green,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.deepPurple,
+        ),
+        routes: {
+          // '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+          '/': (context) => TournamentsPage(),
+        }
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -113,3 +117,125 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+class TournamentsPage extends StatelessWidget {
+  TournamentsPage({Key? key}) : super(key: key);
+
+  final List<Tournament> upcomingTournaments = [
+    Tournament('Tournament A', DateTime.now().add(Duration(days: 10)), 'Location A', '5km'),
+    Tournament('Tournament B', DateTime.now().add(Duration(days: 20)), 'Location B', '10km'),
+    // Add more upcoming tournaments...
+  ];
+
+  final List<Tournament> previousTournaments = [
+    Tournament('Tournament X', DateTime.now().subtract(Duration(days: 10)), 'Location X', '5km'),
+    Tournament('Tournament Y', DateTime.now().subtract(Duration(days: 20)), 'Location Y', '10km'),
+    Tournament('Tournament Y', DateTime.now().subtract(Duration(days: 20)), 'Location Y', '10km'),
+    Tournament('Tournament Y', DateTime.now().subtract(Duration(days: 20)), 'Location Y', '10km'),
+    // Add more previous tournaments...
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Text('Competitions',
+              style: TextStyle(fontSize: 30,
+                  color: Colors.deepPurple,
+                  fontFamily: 'Libre'
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+        ),
+        body: Center(
+          child: ListView(
+            children: [
+              SectionHeader(title: 'Upcoming'),
+              ...upcomingTournaments.map((t) => TournamentCard(tournament: t)),
+              SectionHeader(title: 'Previous'),
+              ...previousTournaments.map((t) => TournamentCard(tournament: t)),
+            ],
+          ),
+        )
+    );
+  }
+}
+
+class SectionHeader extends StatelessWidget {
+  final String title;
+
+  const SectionHeader({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        title,
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class TournamentCard extends StatelessWidget {
+  final Tournament tournament;
+
+  const TournamentCard({Key? key, required this.tournament}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.deepPurple,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              tournament.name,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+            Text(
+                'Date: ${tournament.date.toIso8601String()}',
+                style: TextStyle(color: Colors.white,)
+            ),
+            Text(
+                'Location: ${tournament.location}',
+                style: TextStyle(color: Colors.white,)
+            ),
+            Text(
+              'Race Distance: ${tournament.raceDistance}',
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Tournament {
+  final String name;
+  final DateTime date;
+  final String location;
+  final String raceDistance;
+
+  Tournament(this.name, this.date, this.location, this.raceDistance);
+}
+
+
+// class SecondScreen extends StatelessWidget(){
+//   const SecondScreen({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+// }
