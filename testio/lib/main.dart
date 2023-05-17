@@ -191,32 +191,70 @@ class TournamentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.deepPurple,
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              tournament.name,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            Text(
-                'Date: ${tournament.date.toIso8601String()}',
-                style: TextStyle(color: Colors.white,)
-            ),
-            Text(
-                'Location: ${tournament.location}',
-                style: TextStyle(color: Colors.white,)
-            ),
-            Text(
-              'Race Distance: ${tournament.raceDistance}',
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
+    return InkWell(
+      onTap:() {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TournamentDetailsPage(tournament: tournament),
+          ),
+        );
+      },
+      child: Card(
+        color: Colors.deepPurple,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                tournament.name,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+              Text(
+                  'Date: ${tournament.date.toIso8601String()}',
+                  style: TextStyle(color: Colors.white,)
+              ),
+              Text(
+                  'Location: ${tournament.location}',
+                  style: TextStyle(color: Colors.white,)
+              ),
+              Text(
+                'Race Distance: ${tournament.raceDistance}',
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
         ),
       ),
+    );
+  }
+}
+
+class TournamentDetailsPage extends StatelessWidget {
+  final Tournament tournament;
+
+  const TournamentDetailsPage({Key? key, required this.tournament}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(tournament.name),
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              //how does <Widget> work, maybe an insert?
+              children: <Widget>[
+                Text(
+                  'Here are the race results for ${tournament.name}:',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ],
+            )
+        )
     );
   }
 }
@@ -231,11 +269,3 @@ class Tournament {
 }
 
 
-// class SecondScreen extends StatelessWidget(){
-//   const SecondScreen({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return
-//   }
-// }
