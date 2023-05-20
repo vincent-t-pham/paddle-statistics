@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
+import 'nameTile.dart';
 
 class TeamInfoTeamMembers extends StatefulWidget{
 
   @override
   State<TeamInfoTeamMembers> createState() => _TeamInfoTeamMembers();
 }
-List members = ["salman bhai", "narendre modi", "barraack obama", "adolf hitler", "thomas shelby","ezio auditore"];
-class _TeamInfoTeamMembers extends State<TeamInfoTeamMembers> {
 
+
+class _TeamInfoTeamMembers extends State<TeamInfoTeamMembers> {
+  List members = [];
+
+  void addMember(String mem){
+    setState(() {
+      members.add(mem);
+    });
+  }
+  void deleteMem(int index){
+    setState(() {
+      members.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +52,17 @@ class _TeamInfoTeamMembers extends State<TeamInfoTeamMembers> {
               ),
             ),
             SizedBox(height: 45),
-            searchBar(),
+            searchBar(members,addMember),
             Expanded(
                 child: ListView(
               children: [
                 Container(
                   margin: EdgeInsets.only(top: 50, bottom: 20),
                 ),
-                ...members.map((e) => Text(e))
+                ...members.map((e){
+                  var i = members.indexOf(e);
+                  return nameTile(e, ()=>deleteMem(i));
+                })
               ],
             ))
           ]
@@ -56,7 +72,7 @@ class _TeamInfoTeamMembers extends State<TeamInfoTeamMembers> {
   }
 }
 
-Widget searchBar(){
+Widget searchBar(members,addMem){
   return Container(
       decoration: BoxDecoration(
           color:Colors.white,
@@ -69,7 +85,10 @@ Widget searchBar(){
             hintText: "Team member",
             hintStyle: TextStyle(color: Colors.grey)
         ),
-        onChanged: (e)=>{print(e)},
+        onSubmitted: (e){
+          addMem(e);
+          e = "";
+          },
       )
   );
 }

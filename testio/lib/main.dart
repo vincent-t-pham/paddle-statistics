@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'TeamInfo/teamMembers.dart';
+import 'TeamInfo/awardsRecieved.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -24,13 +24,15 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         // primarySwatch: Colors.deepPurple,
         primaryColor: Color.fromRGBO(101, 98, 223, 1),
-        accentColor: Color.fromRGBO(101, 98, 223, 1),
+        hintColor: Color.fromRGBO(101, 98, 223, 1),
         focusColor: Color.fromRGBO(101, 98, 223, 1),
 
       ),
       routes: {
         // '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
         '/': (context) => TournamentsPage(),
+        '/teammembers':(context) => TeamInfoTeamMembers(),
+        '/awards': (context) =>TeamInfoAwards()
       }
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -123,8 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class TournamentsPage extends StatelessWidget {
-  TournamentsPage({Key? key}) : super(key: key);
-
+   TournamentsPage({Key? key}) : super(key: key);
+  // const TournamentPage({super.key})
   final List<Tournament> upcomingTournaments = [
     Tournament('Tournament A', DateTime.now().add(Duration(days: 10)), 'Location A', '5km'),
     Tournament('Tournament B', DateTime.now().add(Duration(days: 20)), 'Location B', '10km'),
@@ -234,6 +236,7 @@ class TournamentCard extends StatelessWidget {
     );
   }
 }
+
 
 class TournamentDetailsPage extends StatelessWidget {
   final Tournament tournament;
