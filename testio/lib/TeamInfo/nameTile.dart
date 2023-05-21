@@ -7,7 +7,7 @@ Widget nameTile(name,deleteFunc){
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(name, maxLines: 1,),
-        SizedBox(height: 40,width: 50,),
+        SizedBox(height: 40),
         IconButton(
           iconSize: 20,
           icon: Icon(Icons.delete),
