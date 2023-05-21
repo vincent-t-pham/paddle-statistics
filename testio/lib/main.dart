@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+<<<<<<< Updated upstream
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -125,49 +126,89 @@ class _MyHomePageState extends State<MyHomePage> {
 class TournamentsPage extends StatelessWidget {
   TournamentsPage({Key? key}) : super(key: key);
 
+=======
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          // primarySwatch: Colors.deepPurple,
+          primaryColor: Color.fromRGBO(101, 98, 223, 1),
+          hintColor: Color.fromRGBO(101, 98, 223, 1),
+          focusColor: Color.fromRGBO(101, 98, 223, 1),
+        ),
+        routes: {
+          // '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+          '/': (context) => TournamentsPage(),
+          '/teammembers': (context) => TeamInfoTeamMembers(),
+          '/awards': (context) => TeamInfoAwards(),
+          '/socialmedia': (context) => SocialMedia()
+        }
+        // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        );
+  }
+}
+
+class TournamentsPage extends StatelessWidget {
+  TournamentsPage({Key? key}) : super(key: key);
+  // const TournamentPage({super.key})
+>>>>>>> Stashed changes
   final List<Tournament> upcomingTournaments = [
-    Tournament('Tournament A', DateTime.now().add(Duration(days: 10)), 'Location A', '5km'),
-    Tournament('Tournament B', DateTime.now().add(Duration(days: 20)), 'Location B', '10km'),
+    Tournament('Tournament A', DateTime.now().add(Duration(days: 10)),
+        'Location A', '5km'),
+    Tournament('Tournament B', DateTime.now().add(Duration(days: 20)),
+        'Location B', '10km'),
     // Add more upcoming tournaments...
   ];
 
   final List<Tournament> previousTournaments = [
-    Tournament('Tournament X', DateTime.now().subtract(Duration(days: 10)), 'Location X', '5km'),
-    Tournament('Tournament Y', DateTime.now().subtract(Duration(days: 20)), 'Location Y', '10km'),
-    Tournament('Tournament Y', DateTime.now().subtract(Duration(days: 20)), 'Location Y', '10km'),
-    Tournament('Tournament Y', DateTime.now().subtract(Duration(days: 20)), 'Location Y', '10km'),
+    Tournament('Tournament X', DateTime.now().subtract(Duration(days: 10)),
+        'Location X', '5km'),
+    Tournament('Tournament Y', DateTime.now().subtract(Duration(days: 20)),
+        'Location Y', '10km'),
+    Tournament('Tournament Y', DateTime.now().subtract(Duration(days: 20)),
+        'Location Y', '10km'),
+    Tournament('Tournament Y', DateTime.now().subtract(Duration(days: 20)),
+        'Location Y', '10km'),
     // Add more previous tournaments...
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: Text('Competitions',
-                style: TextStyle(fontSize: 30,
-                        color: Colors.deepPurple,
-                        fontFamily: 'Libre Baskerville'
-                    ),
-                textAlign: TextAlign.center,
-                  ),
-                ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-      ),
-      body: Center(
-        child: ListView(
-          children: [
-            SectionHeader(title: 'Upcoming'),
-            ...upcomingTournaments.map((t) => TournamentCard(tournament: t)),
-            SectionHeader(title: 'Previous'),
-            ...previousTournaments.map((t) => TournamentCard(tournament: t)),
-          ],
+        appBar: AppBar(
+          centerTitle: true,
+          title: Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Text(
+              'Competitions',
+              style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.deepPurple,
+                  fontFamily: 'Libre Baskerville'),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
         ),
-      )
-    );
+        body: Center(
+          child: ListView(
+            children: [
+              SectionHeader(title: 'Upcoming'),
+              ...upcomingTournaments.map((t) => TournamentCard(tournament: t)),
+              SectionHeader(title: 'Previous'),
+              ...previousTournaments.map((t) => TournamentCard(tournament: t)),
+            ],
+          ),
+        ));
   }
 }
 
@@ -182,7 +223,10 @@ class SectionHeader extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         title,
-        style: TextStyle(fontFamily: 'Libre Baskerville',fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontFamily: 'Libre Baskerville',
+            fontSize: 24,
+            fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -196,7 +240,7 @@ class TournamentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:() {
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -204,26 +248,30 @@ class TournamentCard extends StatelessWidget {
           ),
         );
       },
-    child: Card(
-      color: Color.fromRGBO(101, 98, 223, 1),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              tournament.name,
-              style: TextStyle(fontFamily: 'Libre Baskerville', fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            Text(
-              'Date: ${tournament.date.toIso8601String()}',
-              style: TextStyle(color: Colors.white,)
-            ),
-            Text(
-                'Location: ${tournament.location}',
-                style: TextStyle(color: Colors.white,)
-            ),
-            Text(
+      child: Card(
+        color: Color.fromRGBO(101, 98, 223, 1),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                tournament.name,
+                style: TextStyle(
+                    fontFamily: 'Libre Baskerville',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              Text('Date: ${tournament.date.toIso8601String()}',
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              Text('Location: ${tournament.location}',
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              Text(
                 'Race Distance: ${tournament.raceDistance}',
                 style: TextStyle(color: Colors.white),
               ),
@@ -238,7 +286,8 @@ class TournamentCard extends StatelessWidget {
 class TournamentDetailsPage extends StatelessWidget {
   final Tournament tournament;
 
-  const TournamentDetailsPage({Key? key, required this.tournament}) : super(key: key);
+  const TournamentDetailsPage({Key? key, required this.tournament})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -257,43 +306,45 @@ class TournamentDetailsPage extends StatelessWidget {
     };
 
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          flexibleSpace: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-              return Container(
-                width: constraints.maxWidth,
-                height: constraints.maxHeight,
-                child: SafeArea(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        tournament.name,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 24,
-                          fontFamily: 'Libre Baskerville',
-                          color: Colors.white,
-                        ),
+      appBar: AppBar(
+        centerTitle: true,
+        flexibleSpace: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return Container(
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      tournament.name,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontFamily: 'Libre Baskerville',
+                        color: Colors.white,
                       ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Participants',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 18,
-                          fontFamily: 'Libre Baskerville',
-                          color: Colors.white,),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Participants',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Libre Baskerville',
+                        color: Colors.white,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              );
-            },
-          ),
-          backgroundColor: Color.fromRGBO(101, 98, 223, 1),
-          toolbarHeight: 90.0,
+              ),
+            );
+          },
+        ),
+        backgroundColor: Color.fromRGBO(101, 98, 223, 1),
+        toolbarHeight: 90.0,
       ),
-
       body: ListView.builder(
         itemCount: dummyHeats.length,
         itemBuilder: (context, index) {
@@ -323,8 +374,6 @@ class TournamentDetailsPage extends StatelessWidget {
     );
   }
 }
-
-
 
 class Tournament {
   final String name;
