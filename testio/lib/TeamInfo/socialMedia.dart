@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../main.dart';
 
 class SocialMedia extends StatelessWidget {
   SocialMedia({Key? key}) : super(key: key);
@@ -8,6 +9,7 @@ class SocialMedia extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         centerTitle: true,
         title: Padding(
           padding: const EdgeInsets.only(top: 20.0),
@@ -59,7 +61,7 @@ Widget nextPageButton(context) {
                     Color.fromRGBO(101, 98, 223, 1)),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/');
+                Navigator.pushNamed(context, '/tournaments');
               },
               child: Text('Save and Continue'),
             ),
@@ -67,7 +69,7 @@ Widget nextPageButton(context) {
               padding: EdgeInsets.only(top: 10),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/');
+                  Navigator.pushNamed(context, '/tournaments');
                 },
                 child: Text(
                   'Do it later',

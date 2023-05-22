@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82fbf09d-dfab-4330-83b8-092417ac1b41" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testio/lib/TeamInfo/awardsRecieved.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testio/lib/TeamInfo/awardsRecieved.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testio/lib/TeamInfo/socialMedia.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testio/lib/TeamInfo/socialMedia.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testio/lib/TeamInfo/teamMembers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testio/lib/TeamInfo/teamMembers.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testio/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testio/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testio/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/testio/pubspec.lock" afterDir="false" />
     </list>
@@ -28,18 +25,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "C:/Users/Vincent Pham/Documents/GitHub/paddle-statistics",
-    "settings.editor.selected.configurable": "flutter.settings",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Vincent Pham/Documents/GitHub/paddle-statistics&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;flutter.settings&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <module name="paddle-statistics" />

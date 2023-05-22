@@ -32,6 +32,7 @@ class _TeamInfoAwards extends State<TeamInfoAwards> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
           centerTitle: true,
           title: Padding(
             padding: const EdgeInsets.only(top: 20.0),
@@ -105,6 +106,12 @@ Widget searchBar(members, addMem, cont) {
         ),
         hintText: "Awards",
         hintStyle: TextStyle(color: Colors.grey)),
+    onSubmitted: ((e) {
+      if (cont.text.replaceAll(' ', '').length != 0) {
+        addMem(cont.text.trim());
+        cont.text = "";
+      }
+    }),
   ));
 }
 
