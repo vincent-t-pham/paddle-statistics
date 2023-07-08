@@ -8,6 +8,11 @@ class AttendanceScreen extends StatefulWidget {
 }
 
 class _AttendanceScreenState extends State<AttendanceScreen> {
+  /*
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _eventPage = TextEditingController();
+  */
   List<String> attendanceData = [];
 
   @override
@@ -17,8 +22,25 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   }
 
   Future<void> fetchAttendanceData() async {
+    // final username = _usernameController.text;
+    // final password = _passwordController.text;
+    // final eventPage = _eventPage.text;
+
     try {
-      final response = await http.get(Uri.parse('http://your-api-url/attendance'));
+      /*
+       final response =
+          await http.post(
+            Uri.parse('http://localhost:8000/testio/attendance'),
+            body: json.encode({
+              'username': username,
+              'password': password,
+              'eventPage': eventPage
+            })
+          ); */
+
+      final response = await http.get(
+        Uri.parse('http://localhost:5000/attendance'),
+      );
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
