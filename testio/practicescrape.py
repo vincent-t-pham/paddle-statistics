@@ -32,7 +32,7 @@ def get_attendance():
 
     return jsonify(attendance_list)
 
-def scrape_attendance():
+def scrape_attendance(loginPhone, myPassword, eventPage):
     attendance = []
 
     # 0 - Default, 1 - Allow, 2 - Block
